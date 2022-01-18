@@ -29,7 +29,7 @@ const CreatePlaylistForm = () => {
   const getSongs = () => {
     fetch("http://localhost:8080/songs")
     .then(response => response.json())
-    .then(songObject => console.log(songObject))
+    .then(songObject => console.log(songObject)) // can't seem to see this? hmm
   }
 
   return (
