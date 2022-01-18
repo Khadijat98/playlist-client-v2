@@ -5,13 +5,13 @@ import React from 'react'
 const Song = (props) => {
   const {
     songTitle,
-    releaseDate,
     songMediaUrl
   } = props.song;
-  
+
   return (
     <div className="song">
-      
+      <h3>{songTitle}</h3>
+      <img src={songMediaUrl} alt="song cover image" />
     </div>
   )
 }

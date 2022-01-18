@@ -20,16 +20,26 @@ const CreatePlaylistForm = () => {
       },
       body: JSON.stringify(playlist)
     })
-    .then((response) => response.json())
+    .then(response => response.json())
     .then((json => console.log(json)))
     .catch(err => console.log(err))
     event.target.reset();
   }
 
+  const getSongs = () => {
+    fetch("http://localhost:8080/songs")
+    .then(response => response.json())
+    .then(songObject => console.log(songObject))
+  }
+
   return (
-    <div>
-      
-    </div>
+      <form className="create-playlist-form" onSubmit={handleSubmit}>
+        <input className="create-playlist-form__input" type="text" placeholder="Your Name"/>
+        <input className="create-playlist-form__input" type="text" placeholder="Playlist Title"/>
+        <select className="create-playlist-form__input" name="" id="">
+
+        </select>
+      </form>
   )
 }
 
