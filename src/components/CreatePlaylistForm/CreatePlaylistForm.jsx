@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./CreatePlaylistForm.scss";
 import Song from "../Song/Song";
-// This should render the song component as a select input in the form, then fetch the songs from the /songs endpoint, then map through them
-// to create options which the user can select
 
 const CreatePlaylistForm = () => {
   const [playlist, setPlaylist] = useState({
@@ -76,9 +74,7 @@ const CreatePlaylistForm = () => {
           name="songselection"
           id=""
           onChange={(value) => {
-            // console.log(value.target.selectedOptions);
             let idArr = [];
-            // value.target.selectedOptions
             for (let i = 0; i < value.target.selectedOptions.length; i++) {
               const songId = value.target.selectedOptions[i].index + 1;
               idArr.push(songId.toString())

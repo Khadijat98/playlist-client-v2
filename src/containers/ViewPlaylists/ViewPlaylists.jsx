@@ -1,9 +1,10 @@
 import React from 'react';
+import Playlist from '../../components/Playlist/Playlist';
 import "./ViewPlaylists.scss"
 // this renders playlist by mapping  
 
-const ViewPlaylists = () => {
-
+const ViewPlaylists = (props) => {
+  const {playlists} = props;
   // fetch("http://localhost:8080/playlists")
   // .then(response => response.json())
   // .then(data => {
@@ -17,12 +18,12 @@ const ViewPlaylists = () => {
   //   })
   // })
 
-  
-
   return (
-    <div>
-      <h1>This is the view playlists page</h1>
-      {/* This should render all created playlists - get method */}
+    <div className="view-playlists">
+      <h2 className="view-playlists__header">Playlists</h2>
+      <div className="view-playlists__container">
+        {playlists && playlists.map(playlist => <Playlist key={playlist.id} playlist={playlist}/>)} 
+      </div>
     </div>
   )
 }
