@@ -3,16 +3,12 @@ import React from 'react'
 // this is the format for all songs
 
 const Song = (props) => {
-  const {
-    songTitle,
-    songMediaUrl
-  } = props.song;
+  const {songTitle} = props;
 
   return (
-    <div className="song">
-      <h3>{songTitle}</h3>
-      <img src={songMediaUrl} alt="song cover image" />
-    </div>
+    <option className="song" value={songTitle}>
+      {songTitle}
+    </option>
   )
 }
 

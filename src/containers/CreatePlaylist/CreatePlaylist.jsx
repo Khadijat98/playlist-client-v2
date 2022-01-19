@@ -6,7 +6,7 @@ const CreatePlaylist = () => {
   return (
     <div>
       <h1>Create Your Playlist!</h1>
-      <CreatePlaylistForm />
+      {/* <CreatePlaylistForm /> */}
     </div>
   )
 }
