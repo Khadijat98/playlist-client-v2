@@ -6,8 +6,8 @@ const SongTile = (props) => {
   const {songTitle, songMediaUrl} = props;
   return (
     <div>
-      <p>{songTitle}</p>
       <img src={songMediaUrl} alt="" />
+      <p>{songTitle}</p>
     </div>
   )
 }
