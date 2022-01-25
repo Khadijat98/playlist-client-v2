@@ -3,10 +3,13 @@ import "./Home.scss";
 
 const Home = () => {
   return (
-    <div>
-      <h1>Welcome to Borahae Playlists!</h1>
-      <p>A place for BTS fans to create their own playlists from a variety of songs by global pop icons, BTS</p>
-    </div>
+    <>
+      <div className="home__img"></div>
+      <div className="home">
+        <h1 className="home__header">Welcome to Borahae Playlists!</h1>
+        <p className="home__description">A place for lovers of global pop icons, BTS, to create and view their own playlists from a large collection of the group's songs.</p>
+      </div>
+    </>
   )
 }
 

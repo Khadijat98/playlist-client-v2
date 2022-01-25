@@ -1,1 +1,20 @@
+@use "./assets/sass/variables" as *;
+.app {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  height: 100vh;
+  // background-color: $background-colour;
 
+  &__img {
+    position: absolute;
+    background: url(../src/assets/images/home.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    opacity: 70%;
+  }
+}

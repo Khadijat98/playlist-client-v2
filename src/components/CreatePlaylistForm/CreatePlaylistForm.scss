@@ -2,6 +2,37 @@
     display: grid;
     justify-content: center;
     grid-template-columns: 1fr;
-    gap: 20px;
-    padding: 10px 20px;
+    gap: 1rem;
+    padding: 0.75rem 1.25rem;
+
+    &__header {
+        padding: 3rem 0 0;
+        text-align: center;
+    }
+
+    &__input {
+        border: 1px solid black;
+        background-color: #F5EFFF;
+        border-radius: 2px 7px;
+    }
+
+    &__full-name, &__playlist-name, &__img-url {
+        height: 2rem;
+    }
+
+    &__song-selection {
+        height: 15rem;
+        padding: 0.5rem 1rem;
+    }
+
+    &__button {
+        align-self: center;
+        width: 10rem;
+        background-color: #7371FC;
+        color: #F5EFFF;
+        font-size: 1rem;
+        border: 1px solid black;
+        border-radius: 5px 10px;
+        padding: 0.5rem;
+    }
 }

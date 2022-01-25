@@ -44,11 +44,11 @@ const CreatePlaylistForm = () => {
 
   return (
     <div>
-      <h2>Create Your Playlist!</h2>
+      <h2 className="create-playlist-form__header">Create Your Playlist!</h2>
       <form className="create-playlist-form" onSubmit={handleSubmit}>
-        <label htmlFor="fullname">Your Name:</label>
+        <label htmlFor="fullname" className="create-playlist-form__input-header">Your Name:</label>
         <input
-          className="create-playlist-form__input"
+          className="create-playlist-form__input create-playlist-form__full-name"
           type="text"
           name="fullname"
           onInput={(event) =>
@@ -56,9 +56,9 @@ const CreatePlaylistForm = () => {
           }
         />
 
-        <label htmlFor="playlistname">Playlist Name:</label>
+        <label htmlFor="playlistname" className="create-playlist-form__input-header">Playlist Name:</label>
         <input
-          className="create-playlist-form__input"
+          className="create-playlist-form__input create-playlist-form__playlist-name"
           type="text"
           name="playlistname"
           onInput={(event) => {
@@ -66,10 +66,10 @@ const CreatePlaylistForm = () => {
           }}
         />
 
-        <label htmlFor="songselection">Song Selection:</label>
+        <label htmlFor="songselection" className="create-playlist-form__input-header">Song Selection:</label>
         <select
           multiple
-          className="create-playlist-form__input"
+          className="create-playlist-form__input create-playlist-form__song-selection"
           name="songselection"
           id=""
           onChange={(value) => {
@@ -85,8 +85,9 @@ const CreatePlaylistForm = () => {
           {getSong()}
         </select>
 
-        <label htmlFor="playlistdescription">Playlist Description:</label>
+        <label htmlFor="playlistdescription" className="create-playlist-form__input-header">Playlist Description:</label>
         <textarea
+          className="create-playlist-form__input"
           name="playlistdescription"
           id=""
           cols="30"
@@ -99,9 +100,10 @@ const CreatePlaylistForm = () => {
           }
         ></textarea>
 
-        <label htmlFor="playlistimage">Playlist Image:</label>
+        <label htmlFor="playlistimage" className="create-playlist-form__input-header">Playlist Image:</label>
         <input
-          className="create-playlist-form__input"
+          placeholder="Paste the Image URL Here"
+          className="create-playlist-form__input create-playlist-form__img-url"
           type="text"
           name="playlistimage"
           onInput={(event) =>
@@ -109,7 +111,7 @@ const CreatePlaylistForm = () => {
           }
         />
 
-        <button type="submit">Create Playlist</button>
+        <button className="create-playlist-form__button" type="submit">Create Playlist</button>
       </form>
     </div>
   );
