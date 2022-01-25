@@ -1,7 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import SongTile from '../SongTile/SongTile';
-import Song from '../Song/Song';
-// this should contain the props for a single playlist
 
 const Playlist = (props) => {
   const {
@@ -12,64 +10,43 @@ const Playlist = (props) => {
     songID
   } = props.playlist
 
-  let cleanSong = songID.trim().split(",")
+  const [songs, setSongs] = useState("");
+  const songArray = [];
+  const getSongs = () => {
+    songID.trim().split(", ").map(song => {
+      fetch(`http://localhost:8080/song/${song}`)
+      .then(response => response.json())
+      .then(songObject => {
+        songArray.push(songObject)
+      })
+    })
+  };
 
-  const [song, setSong] = useState("");
+  const showSongs = () => {
+   getSongs();
+   setTimeout(() => {
+     if (songArray.length > 0) {
+       setSongs(songArray);
+     } 
+   }, 100)
+  };
 
-  // useEffect(() => {
-  //   const getSongs = () => {
-  //     fetch("http://localhost:8080/songs")
-  //       .then((response) => response.json())
-  //       .then((songObject) => {
-  //         for (let i = 0; i < songObject.length; i++) {
-  //           if (songObject[i].id == Number(cleanSong)) {
-              
-  //           }
-  //         }
-
-  //       }
-  //       // console.log(songObject));
-  //   };
-  //   getSongs();
-  // }, []);
-
-  // const getSongTile = () =>
-  //   song.map((song, index) => {
-  //     return <SongTile songTitle={song.songTitle} songMediaUrl={song.songMediaUrl} key={index} />;
-  //   });
-
-  // useEffect(() => {
-  //   fetch(`http://localhost:8080/song/${song}`)
-  //   .then(response => response.json())
-  //   .then(songObject => console.log(songObject))
-  // })
-
-  // useEffect(() => {
-  //   const getSongById = () => {
-  //     fetch(`http://localhost:8080/song/${cleanSong}`)
-  //       .then((response) => response.json())
-  //       .then((songObject) => console.log(songObject));
-  //   };
-  //   getSongById();
-  // }, []);
-
-  
-
+  const hideSongs = () => {
+    setSongs(false);
+    songArray.length = 0;
+  };
 
   return (
     <div>
       <h3>{playlistTitle}</h3>
       <p>{createdBy}</p>
-      {/* image url doesn't get converted into an icon. how do i fix this? */}
       <img src={playlistImgUrl} alt="playlist icon" />
       <p>{playlistDescription}</p>
-      {/* How do i convert these ids back into the song object to access the title and image? */}
       <div>
-        <SongTile />
+        {songs && <SongTile songs={songs} />}
       </div>
-      <div>
-        {cleanSong}
-      </div>
+      <button onClick={showSongs}>Show Songs</button>
+      <button onClick={hideSongs}>Hide Songs</button>
     </div>
   )
 }

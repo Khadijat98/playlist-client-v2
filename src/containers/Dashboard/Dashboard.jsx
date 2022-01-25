@@ -16,7 +16,7 @@ const Dashboard = () => {
       .catch(error => console.log(error))
     }
     getPlaylists();
-  }, [playlists])
+  }, [])
 
   return (
     <div>

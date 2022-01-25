@@ -28,7 +28,6 @@ const CreatePlaylistForm = () => {
     event.target.reset();
   };
 
-
   useEffect(() => {
     const getSongs = () => {
       fetch("http://localhost:8080/songs")
