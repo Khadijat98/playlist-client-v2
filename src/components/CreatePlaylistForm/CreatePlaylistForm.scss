@@ -18,11 +18,11 @@
         border: 2px solid black;
         border-radius: 10px 40px;
 
-        @media only screen and (min-width: 768px) {
+        @media only screen and (min-width: $tablet) {
             grid-template-columns: 1fr 4fr;
         }
 
-        @media only screen and (min-width: 1080px) {
+        @media only screen and (min-width: $large-desktop) {
             grid-template-columns: 1fr 7fr;
         }
     }

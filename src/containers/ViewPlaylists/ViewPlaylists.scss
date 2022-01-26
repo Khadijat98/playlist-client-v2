@@ -17,11 +17,11 @@
       justify-content: center;
       align-items: center;
 
-      @media only screen and (min-width: 768px) {
+      @media only screen and (min-width: $tablet) {
         grid-template-columns: 1fr 1fr;
       }
 
-      @media only screen and (min-width: 1024px) {
+      @media only screen and (min-width: $desktop) {
         grid-template-columns: 1fr 1fr 1fr;
       }
     }

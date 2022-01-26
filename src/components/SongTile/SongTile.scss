@@ -1,3 +1,5 @@
+@use "../../assets/sass/variables" as *;
+
 .song-tile {
   display: grid;
   gap: 1rem;
@@ -5,19 +7,19 @@
   justify-content: center;
   align-items: center;
 
-  @media only screen and (min-width: 500px) {
+  @media only screen and (min-width: $large-mobile) {
     grid-template-columns: 1fr 3fr;
   }
 
-  @media only screen and (min-width: 610px) {
+  @media only screen and (min-width: $largest-mobile) {
     grid-template-columns: 1fr 4fr;
   }
 
-  @media only screen and (min-width: 800px) {
+  @media only screen and (min-width: $large-tablet) {
     grid-template-columns: 1fr 5fr;
   }
 
-  @media only screen and (min-width: 1024px) {
+  @media only screen and (min-width: $desktop) {
     grid-template-columns: 1fr 7fr;
   }
 
