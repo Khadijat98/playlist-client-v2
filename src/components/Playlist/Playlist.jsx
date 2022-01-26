@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import SongTile from '../SongTile/SongTile';
+import "./Playlist.scss";
 
 const Playlist = (props) => {
   const {
@@ -28,7 +29,7 @@ const Playlist = (props) => {
      if (songArray.length > 0) {
        setSongs(songArray);
      } 
-   }, 100)
+   }, 150)
   };
 
   const hideSongs = () => {
@@ -37,16 +38,18 @@ const Playlist = (props) => {
   };
 
   return (
-    <div>
-      <h3>{playlistTitle}</h3>
-      <p>{createdBy}</p>
-      <img src={playlistImgUrl} alt="playlist icon" />
-      <p>{playlistDescription}</p>
-      <div>
+    <div className="playlist">
+      <h3 className="playlist__title">{playlistTitle}</h3>
+      <p className="playlist__author">By: {createdBy}</p>
+      <img className="playlist__img" src={playlistImgUrl} alt="playlist icon" />
+      <p className="playlist__description">{playlistDescription}</p>
+      <div className="playlist__songs">
         {songs && <SongTile songs={songs} />}
       </div>
-      <button onClick={showSongs}>Show Songs</button>
-      <button onClick={hideSongs}>Hide Songs</button>
+      <div className="playlist__button">
+        <button className="playlist__button--show" onClick={showSongs}>Show Songs</button>
+        <button className="playlist__button--hide" onClick={hideSongs}>Hide Songs</button>
+      </div>
     </div>
   )
 }

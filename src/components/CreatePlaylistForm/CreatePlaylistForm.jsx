@@ -51,8 +51,9 @@ const CreatePlaylistForm = () => {
       <form className="create-playlist-form__content" onSubmit={handleSubmit}>
         <label htmlFor="fullname" className="create-playlist-form__input-header">Your Name:</label>
         <input
-          maxLength={250}
+          maxLength={50}
           required
+          placeholder="Your name/nickname here. Max. characters: 50."
           className="create-playlist-form__input create-playlist-form__full-name"
           type="text"
           name="fullname"
@@ -65,6 +66,7 @@ const CreatePlaylistForm = () => {
         <input
           maxLength={100}
           required
+          placeholder="This can be as general or as descriptive as you want! Max. characters: 100."
           className="create-playlist-form__input create-playlist-form__playlist-name"
           type="text"
           name="playlistname"
@@ -86,10 +88,10 @@ const CreatePlaylistForm = () => {
               const songId = value.target.selectedOptions[i].index + 1;
               idArr.push(songId.toString())
             }
-            console.log(idArr.join(", "))
             setPlaylist({ ...playlist, songID: idArr.join(", ") });
           }}
         >
+          <option value="" disabled>Please use ctrl/cmd + mouseclick to select multiple options!</option>
           {getSong()}
         </select>
 
@@ -97,7 +99,7 @@ const CreatePlaylistForm = () => {
         <textarea
           maxLength={500}
           required
-          placeholder="A summary of your playlist...general mood/vibes?"
+          placeholder="A summary of your playlist...general mood/vibes? Max. characters: 500."
           className="create-playlist-form__input"
           name="playlistdescription"
           id=""
