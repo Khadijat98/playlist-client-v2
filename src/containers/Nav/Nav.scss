@@ -1,3 +1,5 @@
+@use "../../assets/sass/variables" as *;
+
 .nav {
   display: flex;
   flex-direction: column;
@@ -6,17 +8,17 @@
   gap: 0.5rem;
   padding: 0.5rem;
   text-decoration: none;
-  border-bottom: 2px solid black;
+  border-bottom: 2px solid $black;
   width: 92%;
   
 
   &__link {
     text-decoration: none;
-    color: black;
+    color: $black;
     font-weight: bold;
     
     &:hover {
-      text-shadow: 0px 1px 2px #F5EFFF, 1px 2px 3px #A594F9;
+      text-shadow: 0px 1px 2px $tertiary-colour, 1px 2px 3px $secondary-colour;
     }
   }
 

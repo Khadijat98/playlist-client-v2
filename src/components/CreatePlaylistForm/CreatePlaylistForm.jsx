@@ -22,10 +22,13 @@ const CreatePlaylistForm = () => {
       },
       body: JSON.stringify(playlist),
     })
-      .then((response) => response.json())
-      .then((json) => console.log(json))
+      .then((response) => {
+        response.json();
+        window.location.reload();
+      })
       .catch((err) => console.log(err));
     event.target.reset();
+    alert("Your playlist was created successfully! Click View Playlists to see your creation!")
   };
 
   useEffect(() => {
@@ -43,11 +46,13 @@ const CreatePlaylistForm = () => {
     });
 
   return (
-    <div>
+    <div className="create-playlist-form">
       <h2 className="create-playlist-form__header">Create Your Playlist!</h2>
-      <form className="create-playlist-form" onSubmit={handleSubmit}>
+      <form className="create-playlist-form__content" onSubmit={handleSubmit}>
         <label htmlFor="fullname" className="create-playlist-form__input-header">Your Name:</label>
         <input
+          maxLength={250}
+          required
           className="create-playlist-form__input create-playlist-form__full-name"
           type="text"
           name="fullname"
@@ -58,6 +63,8 @@ const CreatePlaylistForm = () => {
 
         <label htmlFor="playlistname" className="create-playlist-form__input-header">Playlist Name:</label>
         <input
+          maxLength={100}
+          required
           className="create-playlist-form__input create-playlist-form__playlist-name"
           type="text"
           name="playlistname"
@@ -68,6 +75,7 @@ const CreatePlaylistForm = () => {
 
         <label htmlFor="songselection" className="create-playlist-form__input-header">Song Selection:</label>
         <select
+          required
           multiple
           className="create-playlist-form__input create-playlist-form__song-selection"
           name="songselection"
@@ -87,6 +95,9 @@ const CreatePlaylistForm = () => {
 
         <label htmlFor="playlistdescription" className="create-playlist-form__input-header">Playlist Description:</label>
         <textarea
+          maxLength={500}
+          required
+          placeholder="A summary of your playlist...general mood/vibes?"
           className="create-playlist-form__input"
           name="playlistdescription"
           id=""
@@ -102,7 +113,8 @@ const CreatePlaylistForm = () => {
 
         <label htmlFor="playlistimage" className="create-playlist-form__input-header">Playlist Image:</label>
         <input
-          placeholder="Paste the Image URL Here"
+          required
+          placeholder="Paste the image URL here"
           className="create-playlist-form__input create-playlist-form__img-url"
           type="text"
           name="playlistimage"

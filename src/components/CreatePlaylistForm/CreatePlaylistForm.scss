@@ -1,18 +1,41 @@
+@use "../../assets/sass/variables" as *;
+
 .create-playlist-form {
     display: grid;
     justify-content: center;
-    grid-template-columns: 1fr;
-    gap: 1rem;
-    padding: 0.75rem 1.25rem;
+    align-items: center;
+    
+    &__content {
+        display: grid;
+        justify-content: center;
+        align-items: center;
+        grid-template-columns: 1fr 2.5fr;
+        gap: 1rem;
+        padding: 0.75rem 1.25rem;
+
+        @media only screen and (min-width: 768px) {
+            grid-template-columns: 1fr 4fr;
+        }
+
+        @media only screen and (min-width: 1080px) {
+            grid-template-columns: 1fr 7fr;
+        }
+    }
 
     &__header {
-        padding: 3rem 0 0;
+        padding: 3rem 0 1.5rem;
         text-align: center;
+        text-shadow: 0px 1px 2px $tertiary-colour, 1px 2px 3px $secondary-colour, 2px 3px 4px $secondary-colour, 4px 5px 6px $primary-colour;
+    }
+
+    &__input-header {
+        font-weight: bold;
+        text-shadow: 0px 1px 2px $tertiary-colour;
     }
 
     &__input {
-        border: 1px solid black;
-        background-color: #F5EFFF;
+        border: 1px solid $black;
+        background-color: $tertiary-colour;
         border-radius: 2px 7px;
     }
 
@@ -26,13 +49,26 @@
     }
 
     &__button {
-        align-self: center;
+        grid-column: 2/3;
+        justify-self: center;
         width: 10rem;
-        background-color: #7371FC;
-        color: #F5EFFF;
-        font-size: 1rem;
-        border: 1px solid black;
-        border-radius: 5px 10px;
         padding: 0.5rem;
+        border: 1px solid $black;
+        border-radius: 5px 10px;
+        background-color: $primary-colour;
+        color: $tertiary-colour;
+        text-shadow: 0px 1px 2px $black;
+        font-size: 1rem;
+        cursor: pointer;
+        box-shadow: 0px 1px $primary-shadow, 1px 2px $primary-shadow, 2px 3px $primary-shadow, 3px 4px $black;
+
+        &:hover {
+            background-color: $primary-hover;
+        }
+
+        &:active {
+            box-shadow: 1px 1px $black;
+            transform: translate(1px,2px);
+        }
     }
 }
