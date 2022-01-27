@@ -4,6 +4,7 @@ import Nav from '../Nav/Nav';
 import Home from '../Home/Home';
 import ViewPlaylists from '../ViewPlaylists/ViewPlaylists';
 import CreatePlaylistForm from '../../components/CreatePlaylistForm/CreatePlaylistForm';
+import ErrorPage from '../ErrorPage/ErrorPage';
 
 const Dashboard = () => {
   const [playlists, setPlaylists] = useState([])
@@ -26,6 +27,7 @@ const Dashboard = () => {
           <Route path="/" element={<Home />}/>
           <Route path="/playlist/create" element={<CreatePlaylistForm />}/>
           <Route path="/playlists" element={<ViewPlaylists playlists={playlists} />}/>
+          <Route path="*" element={<ErrorPage />} />
         </Routes>
       </Router>
     </div>
