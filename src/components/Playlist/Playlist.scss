@@ -47,7 +47,7 @@
     justify-content: center;
     gap: 1rem;
     
-    &--show, &--hide {
+    &--show, &--hide, &--delete {
       border-radius: 2px 7px;
       border: 1px solid $black;
       padding: 0.3rem;
@@ -75,6 +75,17 @@
 
       &:hover {
         background-color: $tertiary-hover;
+      }
+    }
+
+    &--delete {
+      margin-left: 4rem;
+      color: $tertiary-colour;
+      background-color: $delete-colour;
+      box-shadow: 0px 1px $delete-shadow, 1px 2px $delete-shadow, 2px 3px $black;
+
+      &:hover {
+        background-color: $delete-hover;
       }
     }
   }

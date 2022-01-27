@@ -4,6 +4,7 @@ import "./Playlist.scss";
 
 const Playlist = (props) => {
   const {
+    id,
     playlistTitle,
     playlistImgUrl,
     createdBy,
@@ -37,6 +38,20 @@ const Playlist = (props) => {
     songArray.length = 0;
   };
 
+  const handleDelete = () => {
+    fetch(`http://localhost:8080/playlist/${id}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      }
+    })
+    .then((response) => {
+      response.json();
+      window.location.reload();
+    })
+    .catch((err) => console.log(err));
+  };
+
   return (
     <div className="playlist">
       <h3 className="playlist__title">{playlistTitle}</h3>
@@ -49,6 +64,11 @@ const Playlist = (props) => {
       <div className="playlist__button">
         <button className="playlist__button--show" onClick={showSongs}>Show Songs</button>
         <button className="playlist__button--hide" onClick={hideSongs}>Hide Songs</button>
+      <button className="playlist__button--delete" onClick={() => {
+        if (window.confirm("Are you sure you want to delete this playlist?")) {
+          handleDelete()}
+        }
+      }> Delete Playlist</button>
       </div>
     </div>
   )

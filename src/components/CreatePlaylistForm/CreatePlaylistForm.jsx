@@ -81,7 +81,6 @@ const CreatePlaylistForm = () => {
           multiple
           className="create-playlist-form__input create-playlist-form__song-selection"
           name="songselection"
-          id=""
           onChange={(value) => {
             let idArr = [];
             for (let i = 0; i < value.target.selectedOptions.length; i++) {
