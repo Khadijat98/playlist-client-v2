@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./CreatePlaylistForm.scss";
 import Song from "../Song/Song";
+import Nav from "../../containers/Nav/Nav";
 
 const CreatePlaylistForm = () => {
   const [playlist, setPlaylist] = useState({
@@ -46,6 +47,8 @@ const CreatePlaylistForm = () => {
     });
 
   return (
+    <>
+    <Nav />
     <div className="create-playlist-form">
       <h2 className="create-playlist-form__header">Create Your Playlist!</h2>
       <form className="create-playlist-form__content" onSubmit={handleSubmit}>
@@ -127,6 +130,7 @@ const CreatePlaylistForm = () => {
         <button className="create-playlist-form__button" type="submit">Create Playlist</button>
       </form>
     </div>
+    </>
   );
 };
 

@@ -1,9 +1,11 @@
 import React from 'react';
 import "./Home.scss";
+import Nav from '../Nav/Nav';
 
 const Home = () => {
   return (
     <>
+    <Nav />
       <div className="home__img"></div>
       <div className="home">
         <h1 className="home__header">Welcome to Borahae Playlists!</h1>
