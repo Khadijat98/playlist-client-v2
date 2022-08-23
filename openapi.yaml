@@ -1,0 +1,43 @@
+openapi: 3.0.2
+info:
+  license:
+    name: MIT
+  version: 1.0.0
+  title: Playlist API
+  description: This site provides documentation on how to use the Playlist API.
+servers:
+  - url: 'https://playlist.test/api'
+
+paths:
+  /playlist:
+    post:
+      operationId: createPlaylist
+      summary: Creates a new playlist
+      requestBody:
+        description: Details of the new playlist that we want to create
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                playlist_name:
+                  type: string
+                  description: The name of the playlist
+
+      responses:
+        '201':
+          description: The customer was successfully created
+          content:
+            application/json:
+              schema:
+                type: object
+                data:
+                  type: object
+                  properties:
+
+        '422':
+          description: The request failed validation and could not be processed.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationFailedResponse'

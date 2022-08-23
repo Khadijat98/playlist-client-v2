@@ -1,11 +1,11 @@
 import React from 'react'
 
 const Song = (props) => {
-  const {songTitle} = props;
+  const {song_name} = props;
 
   return (
-    <option className="song" value={songTitle}>
-      {songTitle}
+    <option className="song" value={song_name}>
+      {song_name}
     </option>
   )
 }

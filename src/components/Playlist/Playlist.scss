@@ -16,8 +16,9 @@
   }
 
   &__title {
-    text-decoration: underline 0.1rem solid $black;
-    text-underline-offset: 0.5rem;
+    // text-decoration: underline 0.1rem solid $black;
+    // text-underline-offset: 0.5rem;
+    font-size: 1.5rem;
     text-shadow: 0px 1px 2px $tertiary-colour, 1px 2px 3px $secondary-colour, 2px 3px 4px $primary-colour;
   }
 
@@ -36,22 +37,29 @@
     font-style: italic;
   }
 
-  &__songs {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-  }
+  // &__songs {
+  //   display: flex;
+  //   flex-direction: column;
+  //   gap: 0.5rem;
+  // }
 
   &__button {
     display: flex;
     justify-content: center;
     gap: 1rem;
     
-    &--show, &--hide, &--delete {
+    &--view {
       border-radius: 2px 7px;
       border: 1px solid $black;
       padding: 0.3rem;
+      background-color: $primary-colour;
+      color: $tertiary-colour;
+      box-shadow: 0px 1px $primary-shadow, 1px 2px $primary-shadow, 2px 3px $black;
       cursor: pointer;
+
+      &:hover {
+        background-color: $primary-hover;
+      }
 
       &:active {
         box-shadow: 1px 1px $black;
@@ -59,34 +67,34 @@
     }
     }
 
-    &--show {
-      background-color: $primary-colour;
-      color: $tertiary-colour;
-      box-shadow: 0px 1px $primary-shadow, 1px 2px $primary-shadow, 2px 3px $black;
+    // &--edit {
+    //   background-color: $primary-colour;
+    //   color: $tertiary-colour;
+    //   box-shadow: 0px 1px $primary-shadow, 1px 2px $primary-shadow, 2px 3px $black;
 
-      &:hover {
-        background-color: $primary-hover;
-      }
-    }
+    //   &:hover {
+    //     background-color: $primary-hover;
+    //   }
+    // }
 
-    &--hide {
-      background-color: $tertiary-colour;
-      box-shadow: 0px 1px $tertiary-shadow, 1px 2px $tertiary-shadow, 2px 3px $black;
+    // &--return {
+    //   background-color: $tertiary-colour;
+    //   box-shadow: 0px 1px $tertiary-shadow, 1px 2px $tertiary-shadow, 2px 3px $black;
 
-      &:hover {
-        background-color: $tertiary-hover;
-      }
-    }
+    //   &:hover {
+    //     background-color: $tertiary-hover;
+    //   }
+    // }
 
-    &--delete {
-      margin-left: 4rem;
-      color: $tertiary-colour;
-      background-color: $delete-colour;
-      box-shadow: 0px 1px $delete-shadow, 1px 2px $delete-shadow, 2px 3px $black;
+    // &--delete {
+    //   margin-left: 4rem;
+    //   color: $tertiary-colour;
+    //   background-color: $delete-colour;
+    //   box-shadow: 0px 1px $delete-shadow, 1px 2px $delete-shadow, 2px 3px $black;
 
-      &:hover {
-        background-color: $delete-hover;
-      }
-    }
+    //   &:hover {
+    //     background-color: $delete-hover;
+    //   }
+    // }
   }
 }
