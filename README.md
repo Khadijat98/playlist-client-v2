@@ -3,7 +3,7 @@
 
 This is a full stack playlist application made using React, Java and MySQL.
 
-This project was created in weeks 11-12 of the _nology course. The aim was to apply the skills we had gained throughout the course to our first full stack project.
+This project was updated during my first four weeks at Trybe, in order to incorporate Trybe's techniques into a project I'm familiar with.
 
 ## Project Description
 ### Overview
