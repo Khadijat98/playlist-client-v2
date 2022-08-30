@@ -3,10 +3,18 @@ import Playlist from "../../components/Playlist/Playlist";
 import Nav from "../Nav/Nav";
 // import "./ViewPlaylists.scss"
 import { useQuery } from "@tanstack/react-query";
+import { useCookies } from "react-cookie";
 
 const ViewPlaylists = () => {
+  const [cookie, setCookie] = useCookies(['user']);
+  const token = cookie;
+
   const fetchPlaylists = async () => {
-    const request = await fetch("https://playlist.test/api/playlists");
+    const request = await fetch("https://playlist.test/api/playlists", {
+      headers: {
+        Authorization: "Bearer " + token.user
+      }
+    });
     const json = await request.json();
     return json;
   };

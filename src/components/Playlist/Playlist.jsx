@@ -1,9 +1,10 @@
 import { useNavigate } from "react-router-dom";
+import { useCookies } from "react-cookie";
+import { useQuery } from "@tanstack/react-query";
 // import "./Playlist.scss";
 
 const Playlist = (props) => {
-  const { id, playlist_name, playlist_image, created_by, description } =
-    props.playlist;
+  const { id, playlist_name, playlist_image, description } = props.playlist;
 
   const navigate = useNavigate();
 
@@ -11,13 +12,30 @@ const Playlist = (props) => {
     navigate("/playlist?id=" + id);
   };
 
+  const [cookie, setCookie] = useCookies(["user"]);
+  const token = cookie;
+
+  const fetchUser = async () => {
+    const request = await fetch("https://playlist.test/api/user", {
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + token.user,
+      },
+    });
+    const json = await request.json();
+    return json;
+  };
+
+  const { data = {} } = useQuery(["user"], fetchUser);
+
   return (
     <div className="playlist grid grid-cols-1 m-3 p-8 gap-6 border-2 rounded-tl-[10px] rounded-br-[10px] rounded-tr-[40px] rounded-bl-[40px] bg-lilac-light shadow-playlist desktop-lg:gap-10">
       <h2 className="playlist__title justify-self-center desktop-lg:text-2xl drop-shadow-title desktop-xl:text-3xl">
         {playlist_name}
       </h2>
       <p className="playlist__author justify-self-center desktop-xl:text-2xl">
-        By: {created_by}
+        By: {data.name}
       </p>
       <img
         className="playlist__img justify-self-center w-[300px] h-[200px] border-2 rounded-tl-[5px] rounded-br-[5px] rounded-tr-[10px] rounded-bl-[10px]"

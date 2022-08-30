@@ -5,17 +5,25 @@ import { useNavigate } from "react-router-dom";
 import { useMutation, useQueryClient, useQuery } from "@tanstack/react-query";
 import { useSearchParams } from "react-router-dom";
 import DeleteDialogBox from "../DeleteDialogBox/DeleteDialogBox";
+import { useCookies } from "react-cookie";
 // import "./ShowPlaylist.scss";
 
 const ShowPlaylist = () => {
   const [dialogIsOpen, setDialogIsOpen] = useState(false);
+
+  const [cookie, setCookie] = useCookies(["user"]);
+  const token = cookie;
 
   const [searchParams] = useSearchParams();
   const id = searchParams.get("id");
   const queryClient = useQueryClient();
 
   const getPlaylist = async () => {
-    const request = await fetch(`https://playlist.test/api/playlist/${id}`);
+    const request = await fetch(`https://playlist.test/api/playlist/${id}`, {
+      headers: {
+        Authorization: "Bearer " + token.user,
+      },
+    });
     const json = await request.json();
     return json;
   };
@@ -27,13 +35,21 @@ const ShowPlaylist = () => {
     error,
   } = useQuery(["playlist", 1], getPlaylist);
 
-  const {
-    playlist_name,
-    playlist_image,
-    created_by,
-    description,
-    songs = [],
-  } = playlist;
+  const { playlist_name, playlist_image, description, songs = [] } = playlist;
+
+  const fetchUser = async () => {
+    const request = await fetch("https://playlist.test/api/user", {
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + token.user,
+      },
+    });
+    const json = await request.json();
+    return json;
+  };
+
+  const { data = {} } = useQuery(["user"], fetchUser);
 
   const navigate = useNavigate();
 
@@ -48,6 +64,9 @@ const ShowPlaylist = () => {
   const deletePlaylist = () => {
     fetch(`https://playlist.test/api/playlist/${id}`, {
       method: "DELETE",
+      headers: {
+        Authorization: "Bearer " + token.user,
+      },
     });
   };
 
@@ -56,8 +75,8 @@ const ShowPlaylist = () => {
       setDialogIsOpen(false);
       queryClient.invalidateQueries(["playlists"]);
       setTimeout(() => {
-        navigate("/playlists"); // doesn't remove the playlist from the page when this navigate occurs - do i need a time delay?
-      }, 1000)
+        navigate("/playlists");
+      }, 1000);
     },
   });
 
@@ -76,7 +95,11 @@ const ShowPlaylist = () => {
   return (
     <>
       <Nav />
-      <DeleteDialogBox open={dialogIsOpen} onClose={() => setDialogIsOpen(false)} onDelete={handleDelete}/>
+      <DeleteDialogBox
+        open={dialogIsOpen}
+        onClose={() => setDialogIsOpen(false)}
+        onDelete={handleDelete}
+      />
       <div className="show-playlist-container grid grid-cols-1 justify-center p-40">
         <div className="show-playlist grid items-center max-w-[1000px] justify-self-center p-12 gap-8 border-2 rounded-tl-[10px] rounded-br-[10px] rounded-tr-[40px] rounded-bl-[40px] bg-lilac-light shadow-playlist">
           <div className="show-playlist__header flex justify-between gap-12">
@@ -99,7 +122,7 @@ const ShowPlaylist = () => {
               <button
                 className="show-playlist__button--delete text-xs p-1 tablet:p-2 border border-black rounded-tl-[2px] rounded-br-[2px] rounded-tr-[7px] rounded-bl-[7px] desktop:text-sm desktop-xl:text-lg bg-pink shadow-pinkBtn hover:bg-pink-hover text-white active:shadow-sm active:translate-x-[1px] active:translate-y-[2px]"
                 onClick={() => {
-                  setDialogIsOpen(true)
+                  setDialogIsOpen(true);
                 }}
               >
                 Delete Playlist
@@ -107,7 +130,7 @@ const ShowPlaylist = () => {
             </div>
           </div>
           <p className="show-playlist__author justify-self-center font-semibold desktop-xl:text-2xl">
-            By: {created_by}
+            By: {data.name}
           </p>
           <img
             className="show-playlist__img justify-self-center w-[300px] h-[300px] border desktop-xl:w-[500px] desktop-xl:h-[500px] rounded-tl-[5px] rounded-br-[5px] rounded-tr-[10px] rounded-bl-[10px]"
